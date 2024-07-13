@@ -2,8 +2,6 @@ const hamburgerMenuIcon = document.querySelector(".hamburger-menu-icon");
 const mobileMenuCloseIcon = document.querySelector(".mobile-menu-close-icon");
 const mobileMenu = document.querySelector(".mobile-menu");
 
-const heroImage = document.querySelector(".hero-img");
-
 const creationsImages = document.querySelectorAll(".creations-img-gallery img");
 
 // Mobile Menu
@@ -17,46 +15,47 @@ mobileMenuCloseIcon.addEventListener("click", () => {
 
 // Creations Resize Changes
 
-mobileSources = [
-	"./images/mobile/image-deep-earth.jpg",
-	"./images/mobile/image-night-arcade.jpg",
-	"./images/mobile/image-soccer-team.jpg",
-	"./images/mobile/image-grid.jpg",
-	"./images/mobile/image-from-above.jpg",
-	"./images/mobile/image-pocket-borealis.jpg",
-	"./images/mobile/image-curiosity.jpg",
-	"./images/mobile/image-fisheye.jpg",
+const imagesNames = [
+	"deep-earth",
+	"night-arcade",
+	"soccer-team",
+	"grid",
+	"from-above",
+	"pocket-borealis",
+	"curiosity",
+	"fisheye",
 ];
 
-desktopSources = [
-	"./images/desktop/image-deep-earth.jpg",
-	"./images/desktop/image-night-arcade.jpg",
-	"./images/desktop/image-soccer-team.jpg",
-	"./images/desktop/image-grid.jpg",
-	"./images/desktop/image-from-above.jpg",
-	"./images/desktop/image-pocket-borealis.jpg",
-	"./images/desktop/image-curiosity.jpg",
-	"./images/desktop/image-fisheye.jpg",
-];
+const mobileSources = [];
+
+imagesNames.forEach((imageName) => {
+	mobileSources.push(`./images/mobile/image-${imageName}.jpg`);
+});
+
+const desktopSources = [];
+
+imagesNames.forEach((imageName) => {
+	desktopSources.push(`./images/desktop/image-${imageName}.jpg`);
+});
 
 if (window.innerWidth >= 1440) {
-	creationsImages.forEach((image, index, array) => {
-		array[index].src = desktopSources[index];
+	creationsImages.forEach((image, index) => {
+		image.src = desktopSources[index];
 	});
 } else {
-	creationsImages.forEach((image, index, array) => {
-		array[index].src = mobileSources[index];
+	creationsImages.forEach((image, index) => {
+		image.src = mobileSources[index];
 	});
 }
 
 window.addEventListener("resize", () => {
 	if (window.innerWidth >= 1440) {
-		creationsImages.forEach((image, index, array) => {
-			array[index].src = desktopSources[index];
+		creationsImages.forEach((image, index) => {
+			image.src = desktopSources[index];
 		});
 	} else {
-		creationsImages.forEach((image, index, array) => {
-			array[index].src = mobileSources[index];
+		creationsImages.forEach((image, index) => {
+			image.src = mobileSources[index];
 		});
 	}
 });
